@@ -59,6 +59,7 @@
 	@include:
 		{
 			"async": "async",
+			"called": "called",
 			"compression": "compression",
 			"express": "express",
 			"fs": "fs",
@@ -78,6 +79,7 @@
 */
 
 var async = require( "async" );
+var called = require( "called" );
 var compression = require( "compression" );
 var express = require( "express" );
 var fs = require( "fs" );
@@ -129,11 +131,15 @@ var kirov = function kirov( option ){
 
 		var pathURL = request.originalUrl;
 
-		var pathURLToken = pathURL.split( "/" );
-		var _basePath = pathToken[ 0 ];
+		var pathURLToken = pathURL.split( "/" )
+			.filter( function onEachToken( token ){
+				return !!token;
+			} );
+
+		var _basePath = pathURLToken[ 0 ];
 
 		//: Confirm if we will be proceeding.
-		if( _basePath != basePath ){
+		if( !( new RegExp( _basePath + "$" ) ).test( basePath ) ){
 			next( );
 
 			return;
@@ -304,7 +310,7 @@ var kirov = function kirov( option ){
 						if( error ){
 							callback( Issue( "reading module", error, modulePath ), null );
 
-						}else if( result ){
+						}else if( moduleContent ){
 							callback( null, {
 								"name": moduleName,
 								"path": modulePath,
@@ -331,10 +337,10 @@ var kirov = function kirov( option ){
 
 				module.mimeType = mimeType;
 
-				callback = called( function delegated( ){ callback( null, module ) } );
+				var handler = called( function onResponse( ){ callback( null, module ) } );
 
-				response.once( "close", callback );
-				response.once( "finish", callback );
+				response.once( "close", handler );
+				response.once( "finish", handler );
 
 				response
 					.status( 200 )

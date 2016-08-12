@@ -1,6 +1,6 @@
 {
   "name": "kirov",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Dependency service.",
   "main": "kirov.js",
   "scripts": {
@@ -23,6 +23,7 @@
   "homepage": "https://github.com/volkovasystems/kirov#readme",
   "dependencies": {
     "async": "^2.0.1",
+    "called": "0.0.5",
     "compression": "^1.6.2",
     "express": "^4.14.0",
     "gnaw": "0.0.0",

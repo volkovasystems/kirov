@@ -1,6 +1,6 @@
 {
   "name": "kirov",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Dependency service.",
   "main": "kirov.js",
   "scripts": {
@@ -33,7 +33,7 @@
     "lire": "0.0.0",
     "method-override": "^2.3.6",
     "mime-types": "^2.1.11",
-    "olivant": "^0.6.3",
+    "olivant": "^0.6.4",
     "pedon": "0.0.0",
     "ssbolt": "0.0.4"
   }

@@ -35,6 +35,6 @@
     "mime-types": "^2.1.11",
     "olivant": "^0.6.4",
     "pedon": "0.0.0",
-    "ssbolt": "0.0.4"
+    "ssbolt": "0.0.5"
   }
 }

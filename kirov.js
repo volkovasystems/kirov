@@ -200,7 +200,9 @@ var kirov = function kirov( option ){
 
 		async.waterfall( [
 			function getBowerModuleList( callback ){
-				gnaw( "bower list --path --json" )
+				callback = called( callback );
+
+				gnaw( "bower list --paths --json" )
 					( function onExecute( error, result ){
 						if( error ){
 							callback( Issue( "getting bower module list", error ), null );
@@ -222,6 +224,8 @@ var kirov = function kirov( option ){
 			},
 
 			function findModule( moduleList, callback ){
+				callback = called( callback );
+
 				if( moduleName in moduleList ){
 					callback( null, moduleList[ moduleName ] );
 
@@ -233,7 +237,6 @@ var kirov = function kirov( option ){
 							"echo xxx",
 							"bower list --paths --json"
 						].join( " && " )
-						.replace( "@redirect", redirect )
 						.replace( "@module", moduleName ) )
 						( function onExecute( error, result ){
 							if( result ){
@@ -269,6 +272,8 @@ var kirov = function kirov( option ){
 			},
 
 			function compareFile( modulePath, callback ){
+				callback = called( callback );
+
 				var pattern = ( new RegExp( ( fileName + "$" ).replace( /\./g, "\." ) ) );
 
 				if( Array.isArray( modulePath ) ){
@@ -303,6 +308,8 @@ var kirov = function kirov( option ){
 			},
 
 			function getModule( modulePath, callback ){
+				callback = called( callback );
+
 				if( pointer &&
 					modulePath in kirov.module )
 				{
@@ -346,6 +353,8 @@ var kirov = function kirov( option ){
 			},
 
 			function sendModule( module, callback ){
+				callback = called( callback );
+
 				var mimeType = mime.lookup( module.file );
 
 				if( !mimeType ){

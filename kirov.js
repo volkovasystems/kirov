@@ -72,7 +72,6 @@
 			"mime": "mime-types",
 			"Olivant": "olivant",
 			"path": "path",
-			"pedon": "pedon",
 			"ssbolt": "ssbolt"
 		}
 	@end-include
@@ -92,7 +91,6 @@ var methodOverride = require( "method-override" );
 var mime = require( "mime-types" );
 var Olivant = require( "olivant" );
 var path = require( "path" );
-var pedon = require( "pedon" );
 var ssbolt = require( "ssbolt" );
 
 /*;
@@ -207,7 +205,7 @@ var kirov = function kirov( option ){
 						if( error ){
 							callback( Issue( "getting bower module list", error ), null );
 
-						}else{
+						}else if( result ){
 							try{
 								var moduleList = JSON.parse( result );
 
@@ -216,6 +214,9 @@ var kirov = function kirov( option ){
 							}catch( error ){
 								callback( Issue( "parsing module list", error ), null );
 							}
+
+						}else{
+							callback( Uncertain( "empty command result" ), null );
 						}
 					} );
 			},
@@ -227,23 +228,23 @@ var kirov = function kirov( option ){
 				}else{
 					Prompt( "installing dependency module", moduleName );
 
-					var redirect = "&> /dev/null";
-					if( pedon.WINDOWS ){
-						redirect = "1> nul";
-					}
-
 					gnaw( [
-							"bower install @module --save @redirect",
-							"bower list --path --json"
+							"bower install @module --save --config.interactive=false",
+							"echo xxx",
+							"bower list --paths --json"
 						].join( " && " )
 						.replace( "@redirect", redirect )
 						.replace( "@module", moduleName ) )
 						( function onExecute( error, result ){
+							if( result ){
+								result = result.split( "xxx" )[ 1 ];
+							}
+
 							if( error ){
 								callback( Issue( "installing and getting module list" )
 									.remind( error ), null );
 
-							}else{
+							}else if( result ){
 								try{
 									moduleList = JSON.parse( result );
 
@@ -259,6 +260,9 @@ var kirov = function kirov( option ){
 								}catch( error ){
 									callback( Issue( "parsing module list", error ), null );
 								}
+
+							}else{
+								callback( Uncertain( "empty command result" ), null );
 							}
 						} );
 				}

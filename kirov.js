@@ -105,6 +105,8 @@ var ssbolt = require( "ssbolt" );
 	@end-option
 */
 var kirov = function kirov( option ){
+	Prompt( "attaching dependency service middleware" );
+
 	var middleware = option.middleware || global.APP || express( );
 
 	var basePath = option.basePath || "/library";
@@ -114,6 +116,8 @@ var kirov = function kirov( option ){
 	if( !option.middleware &&
 		!global.APP )
 	{
+		Prompt( "creating middleware for dependency service" );
+
 		middleware.use( methodOverride( ) );
 		middleware.use( compression( { "level": 9 } ) );
 		middleware.use( helmet( ) );
@@ -174,6 +178,8 @@ var kirov = function kirov( option ){
 		if( !pointer &&
 			moduleName in kirov.module )
 		{
+			Prompt( "serving dependency module from cache", moduleName );
+
 			var module = kirov.module[ moduleName ];
 
 			response
@@ -219,6 +225,8 @@ var kirov = function kirov( option ){
 					callback( null, moduleList[ moduleName ] );
 
 				}else{
+					Prompt( "installing dependency module", moduleName );
+
 					var redirect = "&> /dev/null";
 					if( pedon.WINDOWS ){
 						redirect = "1> nul";
@@ -240,6 +248,8 @@ var kirov = function kirov( option ){
 									moduleList = JSON.parse( result );
 
 									if( moduleName in moduleList ){
+										Prompt( "dependency module", moduleName, "installed" );
+
 										callback( null, moduleList[ moduleName ] );
 
 									}else{
@@ -272,13 +282,14 @@ var kirov = function kirov( option ){
 					callback( null, modulePath );
 
 				}else if( pointer && !modulePath ){
-
 					if( !( /bower_components/ ).test( pointer ) ){
 						modulePath = path.resolve( directory, "bower_components", pointer, fileName );
 
 					}else{
 						modulePath = path.resolve( directory, pointer, fileName );
 					}
+
+					Prompt( "getting dependency module from specific path", moduleName, modulePath );
 
 					callback( null, modulePath );
 
@@ -305,12 +316,16 @@ var kirov = function kirov( option ){
 					return;
 				}
 
+				Prompt( "reading dependency module file", moduleName );
+
 				lire( modulePath )
 					( function onRead( error, moduleContent ){
 						if( error ){
 							callback( Issue( "reading module", error, modulePath ), null );
 
 						}else if( moduleContent ){
+							Prompt( "dependency module content loaded", moduleName );
+
 							callback( null, {
 								"name": moduleName,
 								"path": modulePath,
@@ -377,6 +392,9 @@ var kirov = function kirov( option ){
 				}
 			} );
 	} );
+
+	Prompt( "dependency service configured" )
+		.remind( "load dependency with base path", basePath );
 
 	return middleware;
 };

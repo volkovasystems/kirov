@@ -47,7 +47,7 @@
 
 		The file name must match the stable file name of the bower module.
 
-		A custome pointer can be specified if the path is different.
+		A custom pointer can be specified if the path is different.
 	@end-module-documentation
 
 	@todo:
@@ -111,9 +111,7 @@ var kirov = function kirov( option ){
 	var directory = option.directory || process.cwd( );
 
 	//: Initialize a new middleware if it is not yet given.
-	if( !option.middleware &&
-		!global.APP )
-	{
+	if( !option.middleware && !global.APP ){
 		Prompt( "creating middleware for dependency service" );
 
 		middleware.use( methodOverride( ) );
@@ -138,10 +136,10 @@ var kirov = function kirov( option ){
 				return !!token;
 			} );
 
-		var _basePath = pathURLToken[ 0 ];
+		var mainPath = pathURLToken[ 0 ];
 
 		//: Confirm if we will be proceeding.
-		if( !( new RegExp( _basePath + "$" ) ).test( basePath ) ){
+		if( !( new RegExp( mainPath + "$" ) ).test( basePath ) ){
 			next( );
 
 			return;
@@ -173,9 +171,7 @@ var kirov = function kirov( option ){
 		}
 		var version = request.query.version;
 
-		if( !pointer &&
-			moduleName in kirov.module )
-		{
+		if( !pointer && moduleName in kirov.module ){
 			Prompt( "serving dependency module from cache", moduleName );
 
 			var module = kirov.module[ moduleName ];
@@ -205,7 +201,8 @@ var kirov = function kirov( option ){
 				gnaw( "bower list --paths --json" )
 					( function onExecute( error, result ){
 						if( error ){
-							callback( Issue( "getting bower module list", error ), null );
+							Issue( "getting bower module list", error )
+								.pass( callback, null );
 
 						}else if( result ){
 							try{
@@ -214,7 +211,8 @@ var kirov = function kirov( option ){
 								callback( null, moduleList );
 
 							}catch( error ){
-								callback( Issue( "parsing module list", error ), null );
+								Issue( "parsing module list", error )
+									.pass( callback, null );
 							}
 
 						}else{
@@ -232,12 +230,10 @@ var kirov = function kirov( option ){
 				}else{
 					Prompt( "installing dependency module", moduleName );
 
-					gnaw( [
-							"bower install @module --save --config.interactive=false",
-							"echo xxx",
-							"bower list --paths --json"
-						].join( " && " )
-						.replace( "@module", moduleName ) )
+					gnaw( "bower install @module --save -p --config.interactive=false"
+							.replace( "@module", moduleName ),
+						"echo xxx",
+						"bower list --paths --json" )
 						( function onExecute( error, result ){
 							if( result ){
 								result = result.split( "xxx" )[ 1 ];
@@ -283,9 +279,7 @@ var kirov = function kirov( option ){
 						} )[ 0 ];
 				}
 
-				if( modulePath &&
-					pattern.test( modulePath ) )
-				{
+				if( modulePath && pattern.test( modulePath ) ){
 					modulePath = path.resolve( directory, modulePath );
 
 					callback( null, modulePath );

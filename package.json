@@ -1,10 +1,10 @@
 {
   "name": "kirov",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Dependency service.",
   "main": "kirov.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha kirov-test.js"
   },
   "repository": {
     "type": "git",
@@ -16,24 +16,29 @@
     "kirov"
   ],
   "author": "Richeve S. Bebedor <richeve.bebedor@gmail.com>",
+  "contributors": [
+    "John Lenon Maghanoy <johnlenonmaghanoy@gmail.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/volkovasystems/kirov/issues"
   },
   "homepage": "https://github.com/volkovasystems/kirov#readme",
   "dependencies": {
-    "async": "^2.1.1",
-    "called": "^0.1.2",
+    "async": "^2.1.4",
+    "called": "^0.6.0",
     "compression": "^1.6.2",
+    "doubt": "^0.6.0",
     "express": "^4.14.0",
-    "gnaw": "0.0.3",
-    "harden": "^0.3.5",
-    "helmet": "^2.3.0",
-    "lilfy": "^0.1.0",
-    "lire": "0.0.2",
-    "method-override": "^2.3.6",
-    "mime-types": "^2.1.12",
-    "olivant": "^0.8.7",
-    "ssbolt": "0.0.10"
+    "falze": "^0.3.0",
+    "gnaw": "^0.2.0",
+    "harden": "^0.13.0",
+    "helmet": "^3.3.0",
+    "lilfy": "^0.5.0",
+    "lire": "^0.2.0",
+    "method-override": "^2.3.7",
+    "mime-types": "^2.1.13",
+    "olivant": "^0.9.0",
+    "ssbolt": "^0.2.0"
   }
 }

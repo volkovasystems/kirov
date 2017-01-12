@@ -5,7 +5,7 @@
 		The MIT License (MIT)
 		@mit-license
 
-		Copyright (@c) 2016 Richeve Siodina Bebedor
+		Copyright (@c) 2017 Richeve Siodina Bebedor
 		@email: richeve.bebedor@gmail.com
 
 		Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,6 +34,9 @@
 			"file": "kirov.js",
 			"module": "kirov",
 			"author": "Richeve S. Bebedor",
+			"contributors": [
+				"John Lenon Maghanoy <johnlenonmaghanoy@gmail.com>"
+			],
 			"eMail": "richeve.bebedor@gmail.com",
 			"repository": "https://github.com/volkovasystems/kirov.git",
 			"test": "kirov-test.js",
@@ -62,6 +65,7 @@
 			"called": "called",
 			"compression": "compression",
 			"express": "express",
+			"falze": "falze",
 			"fs": "fs",
 			"gnaw": "gnaw",
 			"harden": "harden",
@@ -77,21 +81,23 @@
 	@end-include
 */
 
-var async = require( "async" );
-var called = require( "called" );
-var compression = require( "compression" );
-var express = require( "express" );
-var fs = require( "fs" );
-var gnaw = require( "gnaw" );
-var harden = require( "harden" );
-var helmet = require( "helmet" );
-var lilfy = require( "lilfy" );
-var lire = require( "lire" );
-var methodOverride = require( "method-override" );
-var mime = require( "mime-types" );
-var Olivant = require( "olivant" );
-var path = require( "path" );
-var ssbolt = require( "ssbolt" );
+const async = require( "async" );
+const called = require( "called" );
+const compression = require( "compression" );
+const doubt = require( "doubt" );
+const express = require( "express" );
+const falze = require( "falze" );
+const fs = require( "fs" );
+const gnaw = require( "gnaw" );
+const harden = require( "harden" );
+const helmet = require( "helmet" );
+const lilfy = require( "lilfy" );
+const lire = require( "lire" );
+const methodOverride = require( "method-override" );
+const mime = require( "mime-types" );
+const Olivant = require( "olivant" );
+const path = require( "path" );
+const ssbolt = require( "ssbolt" );
 
 /*;
 	@option:
@@ -102,16 +108,16 @@ var ssbolt = require( "ssbolt" );
 		}
 	@end-option
 */
-var kirov = function kirov( option ){
+const kirov = function kirov( option ){
 	Prompt( "attaching dependency service middleware" );
 
-	var middleware = option.middleware || global.APP || express( );
+	let middleware = option.middleware || global.APP || express( );
 
-	var basePath = option.basePath || "/library";
-	var directory = option.directory || process.cwd( );
+	let basePath = option.basePath || "/library";
+	let directory = option.directory || process.cwd( );
 
 	//: Initialize a new middleware if it is not yet given.
-	if( !option.middleware && !global.APP ){
+	if( falze( option.middleware ) && !global.APP ){
 		Prompt( "creating middleware for dependency service" );
 
 		middleware.use( methodOverride( ) );
@@ -129,14 +135,14 @@ var kirov = function kirov( option ){
 			return;
 		}
 
-		var pathURL = request.originalUrl;
+		let pathURL = request.originalUrl;
 
-		var pathURLToken = pathURL.split( "/" )
+		let pathURLToken = pathURL.split( "/" )
 			.filter( function onEachToken( token ){
 				return !!token;
 			} );
 
-		var mainPath = pathURLToken[ 0 ];
+		let mainPath = pathURLToken[ 0 ];
 
 		//: Confirm if we will be proceeding.
 		if( !( new RegExp( mainPath + "$" ) ).test( basePath ) ){
@@ -145,8 +151,8 @@ var kirov = function kirov( option ){
 			return;
 		}
 
-		var moduleName = pathURLToken[ 1 ];
-		var fileName = pathURLToken[ 2 ];
+		let moduleName = pathURLToken[ 1 ];
+		let fileName = pathURLToken[ 2 ];
 		if( !moduleName ){
 			Issue( "no module name given", pathURL, request.query )
 				.silence( )
@@ -165,16 +171,16 @@ var kirov = function kirov( option ){
 			return;
 		}
 
-		var pointer = "";
+		let pointer = "";
 		if( request.query.pointer ){
 			pointer = lilfy.revert( request.query.pointer );
 		}
-		var version = request.query.version;
+		let version = request.query.version;
 
-		if( !pointer && moduleName in kirov.module ){
+		if( falze( pointer ) && moduleName in kirov.module ){
 			Prompt( "serving dependency module from cache", moduleName );
 
-			var module = kirov.module[ moduleName ];
+			let module = kirov.module[ moduleName ];
 
 			response
 				.status( 200 )
@@ -206,7 +212,7 @@ var kirov = function kirov( option ){
 
 						}else if( result ){
 							try{
-								var moduleList = JSON.parse( result );
+								let moduleList = JSON.parse( result );
 
 								callback( null, moduleList );
 
@@ -270,9 +276,9 @@ var kirov = function kirov( option ){
 			function compareFile( modulePath, callback ){
 				callback = called( callback );
 
-				var pattern = ( new RegExp( ( fileName + "$" ).replace( /\./g, "\." ) ) );
+				let pattern = ( new RegExp( ( fileName + "$" ).replace( /\./g, "\." ) ) );
 
-				if( Array.isArray( modulePath ) ){
+				if( doubt( modulePath ).ARRAY ){
 					modulePath = modulePath
 						.filter( function onEachModule( _modulePath ){
 							return pattern.test( modulePath );
@@ -349,7 +355,7 @@ var kirov = function kirov( option ){
 			function sendModule( module, callback ){
 				callback = called( callback );
 
-				var mimeType = mime.lookup( module.file );
+				let mimeType = mime.lookup( module.file );
 
 				if( !mimeType ){
 					callback( Uncertain( "unknown mime type", module.file ), null );
@@ -359,7 +365,7 @@ var kirov = function kirov( option ){
 
 				module.mimeType = mimeType;
 
-				var handler = called( function onResponse( ){ callback( null, module ) } );
+				let handler = called( function onResponse( ){ callback( null, module ) } );
 
 				response.once( "close", handler );
 				response.once( "finish", handler );

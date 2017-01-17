@@ -22,8 +22,8 @@ amdefine@>=0.0.4:
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
 ansi-regex@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-2.0.0.tgz#c5061b6e0ef8a81775e50f5d66151bf6bf371107"
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-2.1.1.tgz#c3b33ab5ee360d86e0e628f0468ae7ef27d654df"
 
 ansi-styles@^2.2.1:
   version "2.2.1"
@@ -589,25 +589,25 @@ has-ansi@^2.0.0:
   dependencies:
     ansi-regex "^2.0.0"
 
-helmet-csp@2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/helmet-csp/-/helmet-csp-2.2.0.tgz#047888d9e04018dfbaddcf3a2eaa26865b3683f2"
+helmet-csp@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/helmet-csp/-/helmet-csp-2.3.0.tgz#bc341939dfef5266cc817abcf53f079f61fe7e3f"
   dependencies:
     camelize "1.0.0"
     content-security-policy-builder "1.1.0"
     dasherize "2.0.0"
     lodash.reduce "4.6.0"
-    platform "1.3.1"
+    platform "1.3.3"
 
-helmet@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/helmet/-/helmet-3.3.0.tgz#8eec02d8191ba97a6bdeccbf35f38326285136fd"
+helmet@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/helmet/-/helmet-3.4.0.tgz#05a9437486b05ca219ed8d21dc5e3b6ec0c18118"
   dependencies:
     connect "3.5.0"
     dns-prefetch-control "0.1.0"
     dont-sniff-mimetype "1.0.0"
     frameguard "3.0.0"
-    helmet-csp "2.2.0"
+    helmet-csp "2.3.0"
     hide-powered-by "1.0.0"
     hpkp "2.0.0"
     hsts "2.0.0"
@@ -652,13 +652,24 @@ ienoopen@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ienoopen/-/ienoopen-1.0.0.tgz#346a428f474aac8f50cf3784ea2d0f16f62bda6b"
 
+impel@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/impel/-/impel-0.3.0.tgz#15b036ab3980c65f2dfed92ae9474f9aba6b8f8e"
+  dependencies:
+    asea "^0.6.0"
+    babel-runtime "^6.20.0"
+    falzy "^0.7.0"
+    kein "^0.5.0"
+    protype "^0.8.0"
+    zelf "^0.4.0"
+
 inherits@2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
 
-ipaddr.js@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.1.1.tgz#c791d95f52b29c1247d5df80ada39b8a73647230"
+ipaddr.js@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.2.0.tgz#8aba49c9192799585bdd643e0ccb50e8ae777ba4"
 
 is-buffer@^1.0.2:
   version "1.1.4"
@@ -667,6 +678,14 @@ is-buffer@^1.0.2:
 kein@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/kein/-/kein-0.2.0.tgz#642a7f5ca4a1095e94d942fb1eee5455bfc9052b"
+  dependencies:
+    babel-runtime "^6.20.0"
+    falzy "^0.7.0"
+    protype "^0.8.0"
+
+kein@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/kein/-/kein-0.5.0.tgz#959e59a7444f9f447652af403d05560416be5a69"
   dependencies:
     babel-runtime "^6.20.0"
     falzy "^0.7.0"
@@ -830,15 +849,15 @@ methods@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/methods/-/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
 
-"mime-db@>= 1.24.0 < 2", mime-db@~1.25.0:
-  version "1.25.0"
-  resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.25.0.tgz#c18dbd7c73a5dbf6f44a024dc0d165a1e7b1c392"
+"mime-db@>= 1.24.0 < 2", mime-db@~1.26.0:
+  version "1.26.0"
+  resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.26.0.tgz#eaffcd0e4fc6935cf8134da246e2e6c35305adff"
 
-mime-types@^2.1.13, mime-types@~2.1.11, mime-types@~2.1.13:
-  version "2.1.13"
-  resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.13.tgz#e07aaa9c6c6b9a7ca3012c69003ad25a39e92a88"
+mime-types@^2.1.14, mime-types@~2.1.11, mime-types@~2.1.13:
+  version "2.1.14"
+  resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.14.tgz#f7ef7d97583fcaf3b7d282b6f8b5679dab1e94ee"
   dependencies:
-    mime-db "~1.25.0"
+    mime-db "~1.26.0"
 
 mime@1.3.4:
   version "1.3.4"
@@ -979,9 +998,9 @@ pedon@^0.3.0:
     protype "^0.8.0"
     shardize "^0.4.0"
 
-platform@1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/platform/-/platform-1.3.1.tgz#492210892335bd3131c0a08dda2d93ec3543e423"
+platform@1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/platform/-/platform-1.3.3.tgz#646c77011899870b6a0903e75e997e8e51da7461"
 
 plough@^0.5.0:
   version "0.5.0"
@@ -1029,11 +1048,11 @@ protype@^0.8.0:
     harden "^0.12.0"
 
 proxy-addr@~1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/proxy-addr/-/proxy-addr-1.1.2.tgz#b4cc5f22610d9535824c123aef9d3cf73c40ba37"
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/proxy-addr/-/proxy-addr-1.1.3.tgz#dc97502f5722e888467b3fa2297a7b1ff47df074"
   dependencies:
     forwarded "~0.1.0"
-    ipaddr.js "1.1.1"
+    ipaddr.js "1.2.0"
 
 pyck@^0.5.0:
   version "0.5.0"
@@ -1169,6 +1188,21 @@ snapd@^0.7.0:
     protype "^0.8.0"
     zelf "^0.4.0"
 
+snapd@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/snapd/-/snapd-0.9.0.tgz#ec34e16db294382761c08ef16c377f222d45aa0b"
+  dependencies:
+    asea "^0.6.0"
+    babel-runtime "^6.20.0"
+    budge "^0.5.0"
+    harden "^0.13.0"
+    impel "^0.3.0"
+    kein "^0.5.0"
+    letgo "^0.6.0"
+    pringe "^0.2.0"
+    protype "^0.8.0"
+    zelf "^0.4.0"
+
 source-map@0.5.6, source-map@~0.5.1:
   version "0.5.6"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.6.tgz#75ce38f52bf0733c5a7f0c118d81334a2bb5f412"
@@ -1179,9 +1213,9 @@ source-map@^0.4.4:
   dependencies:
     amdefine ">=0.0.4"
 
-ssbolt@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/ssbolt/-/ssbolt-0.2.0.tgz#dacc9f5b81c0f4a4f90dcb1eebcbd724205d8668"
+ssbolt@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/ssbolt/-/ssbolt-0.3.0.tgz#1e2d282c341ead9fd01d33f482e67f7637b0cf90"
   dependencies:
     called "^0.6.0"
     exorcise "^0.3.0"
@@ -1190,7 +1224,7 @@ ssbolt@^0.2.0:
     optfor "^0.6.0"
     protype "^0.8.0"
     raze "^0.6.0"
-    snapd "^0.7.0"
+    snapd "^0.9.0"
 
 stack-generator@^1.0.7:
   version "1.1.0"

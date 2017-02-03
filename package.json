@@ -1,6 +1,6 @@
 {
   "name": "kirov",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Dependency service.",
   "main": "kirov.js",
   "scripts": {
@@ -26,19 +26,19 @@
   "homepage": "https://github.com/volkovasystems/kirov#readme",
   "dependencies": {
     "async": "^2.1.4",
-    "called": "^0.6.0",
+    "called": "^0.10.0",
     "compression": "^1.6.2",
-    "doubt": "^0.6.0",
-    "express": "^4.14.0",
-    "falze": "^0.3.0",
+    "doubt": "^0.10.0",
+    "express": "^4.14.1",
+    "falze": "^0.5.0",
     "gnaw": "^0.2.0",
-    "harden": "^0.13.0",
+    "harden": "^0.14.0",
     "helmet": "^3.4.0",
-    "lilfy": "^0.5.0",
-    "lire": "^0.2.0",
+    "lilfy": "^0.6.0",
+    "lire": "^0.3.0",
     "method-override": "^2.3.7",
     "mime-types": "^2.1.14",
-    "olivant": "^0.9.0",
-    "ssbolt": "^0.3.0"
+    "olivant": "^0.11.0",
+    "ssbolt": "^0.4.0"
   }
 }
